@@ -17,8 +17,7 @@ Movie Box is an app that allows userse to browse newly releasd movies in theater
 <img src="https://i.imgur.com/jtKnCN0.gif" width=100><br>
 
 ### Notes
-Looking at what additional things the api provided and deciding what else to include was a balance between realistic and challenging.  
-In the end, I settled on also adding genre and rating
+Looking at what additional things the api provided and deciding what else to include was a balance between realistic and challenging.  In the end, I settled on also adding genre and rating.  Figuring out the max file size gif github could render was also a challenge since its so small.  
 
 ### Open-source libraries used
 
