@@ -14,7 +14,7 @@ Movie Box is an app that allows userse to browse newly releasd movies in theater
 
 ### App Walkthough GIF
 
-<img src="https://i.imgur.com/te2uAkN.gif" width=150><br>
+<img src="https://i.imgur.com/te2uAkN.gif" width=100><br>
 
 ### Notes
 Looking at what additional things the api provided and deciding what else to include was a balance between realistic and challenging.  
