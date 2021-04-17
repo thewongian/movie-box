@@ -2,6 +2,7 @@ package com.example.movies.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         TextView tvTitle;
         TextView tvOverview;
+        TextView rating;
+        TextView genre;
         ImageView ivPoster;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -74,11 +78,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            rating = itemView.findViewById(R.id.averageRating);
+            genre = itemView.findViewById(R.id.genre);
+
         }
 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            double movieRating = movie.getRating();
+
+            if (movieRating < 40) {
+                rating.setTextColor(Color.parseColor("#FF2E00"));
+            }
+            else if (movieRating < 70) {
+                rating.setTextColor(Color.parseColor("#E4D34E"));
+            }
+            else {
+                rating.setTextColor(Color.parseColor("#41E518"));
+            }
+            rating.setText(String.format("%.0f", movie.getRating()) + "%");
+            genre.setText(movie.genreToString());
             String imageUrl;
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageUrl = movie.getBackdropPath();

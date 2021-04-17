@@ -10,6 +10,7 @@ import android.util.Log;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.movies.adapters.MovieAdapter;
+import com.example.movies.model.Genre;
 import com.example.movies.model.Movie;
 
 import org.json.JSONArray;
@@ -22,8 +23,8 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    public static final String API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY;
     public static final String TAG = "MainActivity";
     List<Movie> movies;
     @Override
@@ -64,5 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+
+
     }
 }

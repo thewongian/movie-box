@@ -1,5 +1,7 @@
 package com.example.movies.model;
 
+import com.example.movies.MainActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,14 +14,47 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    double rating;
+    int id;
+    List<Integer> genres;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         backdropPath = jsonObject.getString("backdrop_path");
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        rating = jsonObject.getDouble("vote_average") * 10;
+        JSONArray genreArray = jsonObject.getJSONArray("genre_ids");
+        genres = new ArrayList<Integer>();
+        id = jsonObject.getInt("id");
+        for (int i = 0; i < genreArray.length(); i++) {
+            genres.add(genreArray.getInt(i));
+        }
+
+
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+
+
+    public String genreToString() {
+        StringBuffer buffer = new StringBuffer();
+        Genre.initializeMap();
+        for (int i = 0; i < genres.size(); i++) {
+            buffer.append(Genre.genreMap.get(genres.get(i)));
+            if (i != genres.size() - 1) {
+                buffer.append(", ");
+            }
+        }
+        return buffer.toString();
+    }
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
         List<Movie> movies = new ArrayList<Movie>();
         for (int i = 0; i < movieJsonArray.length(); i++) {
@@ -43,4 +78,9 @@ public class Movie {
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
+
+    public static String getVideoApiUrl(int id) {
+        return String.format("http://api.themoviedb.org/3/movie/%dvideos?api_key=%s", id, MainActivity.API_KEY);
+    }
+
 }
